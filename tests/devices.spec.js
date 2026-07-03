@@ -70,8 +70,11 @@ test('Atualizar um Device', async ({ request }) => {
 
 test('Deletar um Device', async ({ request }) => {
   const devicesPage = new DevicesPage(request);
+  const createResponse = await devicesPage.criarDevice(smartphoneXiaomi);
+  const created = await createResponse.json();
+  const deviceId = created.id;
 
-  const response = await devicesPage.deletarDevice(deviceIds.exclusao);
+  const response = await devicesPage.deletarDevice(deviceId);
 
   console.log(await response.json());
 
